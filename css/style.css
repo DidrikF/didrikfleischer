@@ -1,5 +1,5 @@
 html, body {
-  font-size: 12px;
+  font-size: 14px;
   min-width: 300px;
   font-family: 'Arvo', 'Roboto', sans-serif;
   margin: 0px;
@@ -47,7 +47,7 @@ a {
 
 .Banner__text {
   position: relative;
-  top: 140px;
+  top: 120px;
   margin: 0 auto;
   width: 65%;
   background-color: #0B1946;
@@ -58,13 +58,13 @@ a {
 
 .Banner__heading {
   margin: 0;
-  font-size: 3.5em;
+  font-size: 2.5em;
   color: #54FEE9;
 }
 
 .Banner__subheading {
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: white;
   top: 20px;
 }
