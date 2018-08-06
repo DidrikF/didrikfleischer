@@ -151,6 +151,11 @@ a {
   text-align: center;
 }
 
+.Features__paragraph {
+  padding: 0px 5%;
+  margin: 0;
+}
+
 .Features__container {
   display: flex;
   flex-direction: row;
@@ -171,8 +176,7 @@ a {
 }
 
 .Features__element p {
-  padding: 0px 10%;
-  margin: 0;
+  padding: 10px 10%;
 }
 
 .Section__title {
@@ -201,10 +205,6 @@ a {
 
 .Features__heading {
   text-align: center;
-}
-
-.Features__paragraph {
-  padding: 20px 5%;
 }
 
 
