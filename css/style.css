@@ -3,6 +3,7 @@ html, body {
   min-width: 430px;
   font-family: 'Arvo', 'Roboto', sans-serif;
   margin: 0px;
+  line-height: 1.2em;
 }
 
 a {
@@ -416,6 +417,22 @@ a {
     text-align: center;
   }
 
+  .Portfolio {
+    padding: 30px 10%;
+  }
+
+  .Resume {
+    padding: 30px 10%;
+  }
+
+  .Contact {
+    padding: 30px 10%;
+  }
+
+  .Footer {
+    padding: 40px 10%;
+  }
+
 }
 
 
@@ -425,23 +442,23 @@ a {
   }
 
   .About {
-    padding: 30px 20%;
+    padding: 30px 15%;
   }
 
   .Portfolio {
-    padding: 30px 20%;
+    padding: 30px 15%;
   }
 
   .Resume {
-    padding: 30px 20%;
+    padding: 30px 15%;
   }
 
   .Contact {
-    padding: 30px 20%;
+    padding: 30px 15%;
   }
 
   .Footer {
-    padding: 40px 20%;
+    padding: 40px 15%;
   }
 
 }
