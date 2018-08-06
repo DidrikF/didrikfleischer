@@ -397,7 +397,7 @@ a {
 /* Desktop styles */
 @media only screen and (min-width: 1200px) {
   html, body {
-    font-size: 14px;
+    font-size: 16px;
   }
   .About {
     padding: 30px 10%;
@@ -418,3 +418,11 @@ a {
 
 }
 
+
+@media only screen and (min-width: 1700px) {
+  html, body {
+    font-size: 16px;
+    max-width: 1700px;
+  }
+
+}
