@@ -171,7 +171,8 @@ a {
 }
 
 .Features__element p {
-  padding: 20px 10%;
+  padding: 0px 10%;
+  margin: 0;
 }
 
 .Section__title {
