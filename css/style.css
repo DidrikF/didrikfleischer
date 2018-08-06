@@ -1,9 +1,9 @@
 html, body {
-  font-size: 10px;
-  min-width: 430px;
+  font-size: 12px;
+  min-width: 360px;
   font-family: 'Arvo', 'Roboto', sans-serif;
   margin: 0px;
-  line-height: 1.2em;
+  line-height: 1.2;
 }
 
 a {

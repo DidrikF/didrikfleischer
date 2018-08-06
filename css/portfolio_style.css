@@ -1,9 +1,9 @@
 html, body {
-  font-size: 10px;
-  min-width: 430px;
+  font-size: 14px;
+  min-width: 360px;
   font-family: 'Arvo', 'Roboto', sans-serif;
   margin: 0px;
-  line-height: 1.2em;
+  line-height: 1.2;
 }
 
 a {
@@ -47,7 +47,7 @@ a {
 
 .Banner__text {
   position: relative;
-  top: 140px;
+  top: 120px;
   margin: 0 auto;
   width: 65%;
   background-color: #0B1946;
@@ -58,13 +58,13 @@ a {
 
 .Banner__heading {
   margin: 0;
-  font-size: 3.5em;
+  font-size: 2.5em;
   color: #54FEE9;
 }
 
 .Banner__subheading {
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: white;
   top: 20px;
 }
@@ -178,6 +178,7 @@ a {
   font-size: 2.5em;
   text-align: center;
   margin: 0;
+  padding-bottom: 20px; 
 }
 
 .row:after {
@@ -210,22 +211,8 @@ a {
   padding: 30px 5%;
 }
 
-.Technologies h5 {
-  font-size: 1.5em;
-}
-
-.Technologies h4 {
-  font-size: 1.8em;
-}
-
-.Technologies h3 {
-  font-size: 2em;
-}
 
 
-.Technologies p {
-
-}
 
 .Technologies__container {
   display: flex;
@@ -290,7 +277,6 @@ a {
   background-color: #eeeeee;
   margin: 0;
   padding: 30px 10%;
-  font-size: 1.2em;
 }
 
 
@@ -338,7 +324,7 @@ a {
 
 @media only screen and (min-width: 600px) {
   html, body {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -346,7 +332,7 @@ a {
 /* Tablet styles */
 @media only screen and (min-width: 800px) {
   html, body {
-    font-size: 12px;
+    font-size: 14px;
   }
   
   .Banner__text {
