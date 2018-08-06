@@ -422,7 +422,26 @@ a {
 @media only screen and (min-width: 1700px) {
   html, body {
     font-size: 16px;
-    max-width: 1700px;
+  }
+
+  .About {
+    padding: 30px 20%;
+  }
+
+  .Portfolio {
+    padding: 30px 20%;
+  }
+
+  .Resume {
+    padding: 30px 20%;
+  }
+
+  .Contact {
+    padding: 30px 20%;
+  }
+
+  .Footer {
+    padding: 40px 20%;
   }
 
 }
