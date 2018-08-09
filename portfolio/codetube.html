@@ -38,7 +38,7 @@
         <div class="Project__column">
             <a href="/livedemo/codetube"><h1>Codetube - Youtube clone</h1></a>
             <p>
-                The Codetube project is an online course created by Codecourse Ltd. 
+                The Codetube project is an online course created by Codecourse Ltd. I worked on this early in 2017, trying to sharpen my Laravel and Vue skills. I needed more experience building real projects I thought, but what to build? I also felt like I did not know enough to successfully design and build out every aspect of a more complicated application. I had watched some Youtube videos by a channel named Codecourse in the past and found it very educational. When I heard the man behind the youtube channel had made an online video coursing site I had to check it out. Browsing around I saw the Codetube course and it looked interesting. “Exactly what I’m looking for” I thought to myself. Building the app side by side with the instructor was a good learning experience and definitely brought my web development skills to the next level.
             </p>
         </div>
         <div class="Project__column">
@@ -64,7 +64,7 @@
 
       <div class="Features__container">
           <div class="Features__element">
-              <h3 class="">1. Watch videos - like, comment and subscribe</h3>
+              <h3 class="">1. Watch videos</h3>
               <img src="/images/feature_watchvideo.png">
               <p class="">
                   When navigating to a video you get a screen like this. Here you can watch the video, subscribe to the channel that posted it, submit a like or dislike and post comments. The owner of the video can deside whether or not to allow comments and likes on the video in addition to edit the title, description and visibility (public or private). 
@@ -78,7 +78,7 @@
               </p>
           </div>
           <div class="Features__element">
-              <h3 class="">3. Seach for videos and channels</h3>
+              <h3 class="">3. Search for videos and channels</h3>
               <img src="/images/feature_search.png">
               <p class="">
                   The application uses Algolia, a hosted full-text, numerical, and faceted search engine. People can misspell and ignore capitalization, Algolia is smart enough to return good search results for matches on channel and video titles and descriptions.
@@ -102,7 +102,7 @@
 
       All videos and images are stored on S3, an object based storage solution provided by AWS. Accessing data stored in S3 is dead simple. Because all S3 buckets share the same global namespace, all buckets are unique, and each bucket can be provided with its own unique URL. The objects being available through a web API makes accessing the object very easy, and can done directly from each web browser. Access to objects stored in S3 of course requires the entity has the necessary permissions. The codetube server have privileges to upload, move and delete files, but the client side only have permission to read them. 
       </br></br>
-      Codetube enables users to search the library of videos and channels. One might think that such functionality is easily achieved. One could simply use full-text search on the database tables for the desired output. But what about user misspelling, how to you rank order the results and how to achieve good performance? These are problems faced by many web applications and businesses have been created to solve exactly this problem. Algolia is one such service and provides a hosted full-text, numerical, and faceted search engine capable of delivering realtime results from the first keystroke. All you have to do is to keep your database in sync with Algolias, do some configuration and advanced search capabilities can be enjoyed by your users.
+      Codetube enables users to search the library of videos and channels. One might think that such functionality is easily achieved. One could simply use full-text search on the database tables for the desired output. But what about users misspelling, how to you rank order the results and how to achieve good performance? These are problems faced by many web applications and businesses have been created to solve exactly this problem. Algolia is one such service and provides a hosted full-text, numerical, and faceted search engine capable of delivering realtime results from the first keystroke. All you have to do is to keep your database in sync with Algolias, do some configuration and advanced search capabilities can be enjoyed by your users.
       </br></br>
       The original version of the application used Telestream to transcode videos from any format into mp4, the supported format of the client-side video player (Video.js). The user would upload the video to the didrikfleischer.com web server, which would send the video over to Telestream which would transcode the video into the mp4 format and then upload the video to S3. Due to Telestream being a payed service and my trial has ended, this whole process has been bypassed and users now upload their videos to the didrfkfleisher.com web server which then directly uploads it to S3.
       </br></br>
