@@ -190,7 +190,7 @@ a {
 }
 
 .Portfolio__technologies i {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .technology_logo {
@@ -199,8 +199,8 @@ a {
 }
 
 .svg_logo {
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   position: relative;
   top: 10px;
 }
@@ -221,7 +221,7 @@ a {
 }
 
 .gopher_logo {
-  width: 1.2px;
+  width: 1.2em;
 }
 
 .Resume {
