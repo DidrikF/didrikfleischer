@@ -90,10 +90,27 @@
 
     <div class="Technologies">
       <h2 class="Section__title">Technologies involved</h2>
-      The Codetube project is an online course created by Codecourse Ltd. Although I cannot take credit for coming up with all the logic of the application, I did learn a lot following along with the course and I do understand how it all works. 
-      I have made some minor changes to the original setup to make it a bit more suitable for display and also had to come up with some workarounds due to the trial period of the video transcoding service I used had ended. 
+      The Codetube project is an online course created by Codecourse Ltd. Although I cannot take credit for coming up with all the logic of the application, I did learn a lot following along with the course and I do understand how it works. I have made some minor changes to the original setup to make it a bit more suitable for display and also had to come up with some workarounds due to the trial period of the video transcoding service I used had ended. 
+      </br></br>
 
-    </br></br>More coming soon
+      Codetube is running on the same server (a t2.micro vm with Ubuntu on AWS) as all other applications available through the didrikfleischer.com domain. You access the server through Nginx, configured as a reverse proxy. The server side code is written in PHP using the Laravel framework and the client side code is written in JavaScript using the Vue framework. MySQL database server is used for persistent storage of user data. 
+      </br></br>
+      Most of the application is just CRUD APIs with authorisation logic. What I found interesting about this project was the usage of several external services to create the final user experience. Being able to outsource some of the heavy lifting to external services gives great power to developers who can then build much more complex and performant apps.
+      </br></br>
+      I’ll now tell you some about the external services and software used by Codetube.
+      </br></br>
+
+      All videos and images are stored on S3, an object based storage solution provided by AWS. Accessing data stored in S3 is dead simple. Because all S3 buckets share the same global namespace, all buckets are unique, and each bucket can be provided with its own unique URL. The objects being available through a web API makes accessing the object very easy, and can done directly from each web browser. Access to objects stored in S3 of course requires the entity has the necessary permissions. The codetube server have privileges to upload, move and delete files, but the client side only have permission to read them. 
+      </br></br>
+      Codetube enables users to search the library of videos and channels. One might think that such functionality is easily achieved. One could simply use full-text search on the database tables for the desired output. But what about user misspelling, how to you rank order the results and how to achieve good performance? These are problems faced by many web applications and businesses have been created to solve exactly this problem. Algolia is one such service and provides a hosted full-text, numerical, and faceted search engine capable of delivering realtime results from the first keystroke. All you have to do is to keep your database in sync with Algolias, do some configuration and advanced search capabilities can be enjoyed by your users.
+      </br></br>
+      The original version of the application used Telestream to transcode videos from any format into mp4, the supported format of the client-side video player (Video.js). The user would upload the video to the didrikfleischer.com web server, which would send the video over to Telestream which would transcode the video into the mp4 format and then upload the video to S3. Due to Telestream being a payed service and my trial has ended, this whole process has been bypassed and users now upload their videos to the didrfkfleisher.com web server which then directly uploads it to S3.
+      </br></br>
+      My web server does do some work with the video though. It uses FFmpeg to generate a thumbnail image taken from the first second of the uploaded video. FFmpeg is the the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created.
+      This image is also uploaded to S3 and is used when listing the video as well as a background on the video player.
+      </br></br>
+      I had a lot of difficulty making the whole video uploading process work. Many things have to be thought of. First the user needs to be presented with a file input element. Then an instance of the FormData class must be created and the file added to it. Then an http client (like Axios) is used to send the file as a POST request to the Nginx server. The Nginx server, configured as a reverse proxy, then forwards the request to the php runtime which starts compiling and running the specified script.  </br>
+      But you have to remember to set permissions on the local folder used to temporarily store videos in order for the php runtime to be able to use it. Both Nginx and PHP also have configuration options that has to be set to allow larger files to be uploaded. The default values will only allow files of a few MB to be uploaded. And you have to remember to restart both the Nginx and PHP services for the configuration changes to take effect. And yes, I did not think of reloading the PHP service once I had made these changes, causing me more hours of frustration 😞. Oh well, I know better now. Once I had all this down it was fairly straight forward to use the league/flysystem-aws-s3-v3 package, an adapter for the aws-sdk-php v3 library, to upload the video to S3. 
 
     </div>
 
