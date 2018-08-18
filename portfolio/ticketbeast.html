@@ -121,7 +121,7 @@
             <li>When a unit test is not passing, but our feature test is, then maybe there are something in the unit tests that we are testing for, but do not actually need.</li>
           </ol>
         </li>
-        <li>-	There is a concept of code smells; characteristics of code that is indicative of its bad quality, and that it should be improved. There are many such smells and solutions. A couple of them are: 
+        <li>There is a concept of code smells; characteristics of code that is indicative of its bad quality, and that it should be improved. There are many such smells and solutions. A couple of them are: 
           <ul>
               <li>Long parameter list (one solution is: preserve the whole object)</li>
               <li>Feature envy; one object is very interested in the internal workings of another object (one solution is: let the object owning all the information do the work the other object wants done)</li>
@@ -141,7 +141,78 @@
         <li>We don’t worry about asserting what exactly an error string should be, just knowing that it is there is enough. In the end, this is a design decision, that the design team may want to change at any moment.</li>
         <li>A real refectory is introducing changes to your code towards some desired end state while keeping your test passing throughout the process.</li>
         <li>Make sure you have tests proving that you need each piece of code you are writing.</li>
-
+        <li>Don’t mock what you do not own.</li>
+          <ul>
+            <li>Tests will pass even if you aren’t using the real API correctly.</li>
+            <li>Tests can’t be used to confirm that our integration works with the external API if a change is made to that API.</li>
+            <li>Tests are coupled to a specific implementation; can’t refactor to use another.</li>
+          </ul>
+        <li>Use "contract tests” to create a set of tests that are shared between all the different implementations of an interface.</li>
+        <li>There are many places where test duplication could occur, keep an eye out for this, so that you don’t make your tests unnecessarily complicated. Code only needs to be tested once.</li>
+        <li>You can always comment out a function you suspect you don’t need any more, run the test suite, if all is ok; you can with confidence delete the method. Otherwise, just uncomment it.</li>
+        <li>Facades have helper methods to assist with testing: FacadeClass::method()->shouldReceive($methodName)->andReturn($someValue)</li>
+        <li>Sometimes it’s better to use mocks and spies to not duplicate tests. Use mocks and spies on your feature tests, making sure that the methods that you intend to be called, are in fact called. Then use unit tests to assert that the behavior of the methods is correct.</li>
+        <li>As you mock objects in your code, you come in danger of having the tests around the mocks not represent the real implementations. Mockery enables you to pick up on this by setting a configuration option to not allow mocking non-existing methods. This way, Mockery will tell you whenever you are trying to mock a method that does not exist on the object you are mocking. (Mockery::getConfiguration()->allowMockingNonExistentMethods(false))</li>
+        <li>When testing form-submissions you cannot use mocks, but there are still ways to make your tests clearer and more explicit. Use payload factory helper-methods to generate forms (arrays) with valid data that you can override depending on the test.</li>
+        <li>Using model factories in your tests will centralize the logic of creating models, making it easy to make changes to how models are created.</li>
+        <li>You have to look out for tests for features that could also be solved by code that would not satisfy your needs in production. (Example: scramble database records, to explicitly force the implementation of record filtering, and not allowing a paginated list to also pass the test.)</li>
+        <li>Use self-documenting mock data in your tests.</li>
+        <li>Use assertArraySubset($arr1, $arr2) whenever you want to assert that all attributes in arr1 is in arr2, but are2 is allowed to have additional fields.</li>
+        <li>Get logic out of the views, so that things can be more explicitly tested on the controller level.</li>
+        <li>PHPUnit’s assertion signature allows passing in, as the fourth parameter, a parameter specifying the precision floating point numbers should be compared with.</li>
+        <li>If a test becomes large and messy, because you have a complicated setup and many assertions, it may be valuable to split the test into two. Hopefully you’ll avoid having to duplicated the complicated setup and still test what you want.</li>
+        <li>When testing image processing, and you want to make sure that the resulting image is similar to the original, don’t do some advanced image-comparison operation, just have an image on disk, already processed, that you visually have verified to be correct and assert that this image is the same as the newly processed image.</li>
+        <li>For expressiveness, it could be beneficial to; assert on some state, try to perform some action that should fail, then assert that the state is unchanged.</li>
+        <li>You can test artisan commands by running them within your test like this: $this->artisan(‘my-command’, [$param1, $param2]), and then assert on the side effects of running the command.</li>
+        <li>Mocks and spies can help you with testing classes with methods that have stochastic return values.</li>
+        <li>Browser testing with Laravel Dusk (and in general) will not give you fine grained information about server-side errors, and you have to build out a lot of code without errors telling you what to do next. This is a disadvantage, and is one reason why you should test as much as possible with http feature tests.</li>
+        <li>You can look in Laravel’s logs for clues to why your Dusk tests are failing.</li>
+        <li>You can unit test middleware, I especially liked the trick with a custom next() function passed to the middleware’s handle function, where you can fail the test if the function is called.</li>
+        <li>When testing, don’t’ hash stuff, don’t do use any cryptographic functions in your test suite. Avoiding them can dramatically decrease your tests run time, if you use them many places (hashing passwords in User model factory for instance).</li>
+      </ul>
+      </br></br>
+      <h3>PHP and Laravel</h3>
+      <ul>
+        <li>A lot of code is related to the models, so it’s not strange that the models get quite big.</li>
+        <li>model->findOrFail() causes a ModelNotFoundException, if no model was retrieved from the database. Laravel will automatically turn this into a 404 response.</li>
+        <li>Return $this in model methods to be able to chain the method with others.</li>
+        <li>You can chain catch-clauses to conditionally handle different Exceptions thrown in the try block.</li>
+        <li>Use seeJsonSubset() to assert that JSON matches some array.</li>
+        <li>Often interfaces are bound to implementations in the IOC container.</li>
+        <li>Laravel’s collections are very powerful, being fluent with them is a major advantage.</li>
+        <li>Several of Laravel’s classes are macroable, this has many potential uses (make things read nicer, etc…)</li>
+        <li>Although the concurrency model in PHP is dead simple, race condition still occur; watch out!</li>
+        <li>You can create helper methods on the base TestCase class. This can aid when refactoring, because you’ll have centralized some of the logic. </li>
+        <li>You could create custom Model Factory Classes, but then you should put them directly under the database folder and not under database/factories, because of how Laravel automatically loads files in this directory. </li>
+        <li>Writing tests that forces controllers to return views, will catch errors in the views and report them. You get this feedback "for free”.</li>
+        <li>Using a table as a pivot table between two other tables (expressing a one-to-many relationship though a third table), requires that the pivot table has only one entry for each pair of ids from the two tables being connected. (Eloquent related)</li>
+        <li>Laravel provides helpers for mocking events, jobs, and facades out of the box. These helpers primarily provide a convenience layer over Mockery so you do not have to manually make complicated Mockery method calls. Of course, you are free to use Mockery or PHPUnit to create your own mocks or spies.</li>
+        <li>Testing queues: you test that the controller actually dispatches the job with the correct data passed to it, and then write a separate unit test to drive out the actual implementation of the handle() method of the job.</li>
+        <li>Maybe don’t generalize in your test function names: prefer “a_promoter_cannot_send_a_new_message_for_other_concerts”, over  “promoters_cannot_send_new_messages_for_other_concerts”. The application is at any time only concerned with individual promoters and individual messages (just a thought).</li>
+        <li>Once you have a successfully passing test, to check if your implementation works as intended, make a breaking change and see the test failing. An additional indication that your code works as expected.</li>
+        <li>Laravel comes with built in ways to generate fake files and images.</li>
+        <li>Many things your controllers should not know about. It’s a bad habit to clutter down your controllers with all sorts of logic. Laravel has an event system that can be used to alleviate this problem.</li>
+        <li>You can act as a user when performing a request to your application within your tests, using the actingAs($user) method.</li>
+        <li>Laravel allows you to mock the Storage class, which can fake integrations with cloud storage providers. Laravel creates local folders where the files you upload actually gets stored, so that assertions can be made against the actual files, stored on your local file system. This way you don’t need to interface with something like S3 when running your tests.</li>
+        <li>Using Intervention-image, you can resize the image, while maintaining the aspect ratio, limit the amount of colors and encode it in different formats in a few lines of code. An image can get 10x smaller, boosting performance.</li>
+        <li>In PHP you can create callable classes using the __invoke() magic method on the class. This allows you to capture information about the method call, like; parameters it was called with, if it was in fact called, and more.</li>
+        <li>Composer’s autoloader resolves and loads the file that a class is located in, but the Laravel service container is still needed to tell the application what implementation/instance of the class to use. The class may have a constructor taking any number of arguments, composer’s autoloader has no way of knowing what arguments this should be.</li>
+      </ul>
+      <h3>Web Development and Programming in General</h3>
+      <ul>
+        <li>Think about the order of failure conditions you want your users to be reported about. (403, then 302, then 404 for instance)</li>
+        <li>A 404 should take precedence over a 422</li>
+        <li>Redirect before reporting Not Found (302 take precedence over 404), this is to not leak information about assets to users who does not own that asset.</li>
+        <li>Interfaces are not enough to ensure multiple implementations of the same interface actually behave the same way from the point of view of the rest of the application.</li>
+        <li>Domain logic should ideally be located in one place only.</li>
+        <li>Catch and re-throw Exceptions thrown by external library, to insulate your application from needing to know about the internal working is the external library and its dependencies.</li>
+        <li>Good object-oriented design really helps with structure and maintainability.</li>
+        <li>Devoting some time to how the objects in your app are composed together can really help with your design.</li>
+        <li>Use the Hashids library to generate short, “random" and non-colliding strings.</li>
+        <li>It could be beneficial to keep your controllers very REST and resource oriented, only allowing methods like: index, show, create, store, edit, update, delete. Not allowing all kinds of method names will keep you from having your controllers turn into junk drawers, containing all sorts of logic. Another option is to piggyback whatever you want to do on the resource-oriented methods (that are allowed and already in place). This introduces some complexity, with multiple conditional flows through these methods. A second, and maybe the best way, is to expose a new endpoint representing a new type of resource. Although technically no new resource was created, you only define some state of an already existing resource to be a new resource (published-concerts vs concerts, a published-concert can be defined as a new resource, although there is no model for published-concerts). With this new resource, you can continue to use the resource-oriented method names, and it would read well and be organized. </li>
+        <li>You can in your code write method calls and use variables/properties you wish you had, and let the errors occurring when running your test force you to implement them. A powerful way to work, conducive to production of well structured, easy reading code.</li>
+        <li>Working with extremely large database results, you might run out of memory; chunking to the rescue.</li>
+        <li>With a comprehensive test suite, updating the framework, or other dependencies you are working with, is easy. You update your dependencies in the composer.json file, run composer update, run your test suite and resolve any errors you get. </li>
       </ul>
     
     </div>
