@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Didrik Fleischer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Roboto|Italiana" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/portfolio_style.css">
+  </head>
+  <body>
+    <div class="Banner">
+      <div class="Banner__frame">
+        <img class="Banner__profilepicture" src="../images/profile_picture.png" alt="Profile picture missing">
+      </div>
+
+      <div class="Banner__text">
+        <h1 class="Banner__heading">DIDRIK FLEISCHER</h1>
+        <p class="Banner__subheading">MSc student in industrial economics and</br>aspiring web developer</p>
+      </div>
+
+
+      <nav class="Banner__navigation">
+          <ul class="Navigation__list">
+            <li class="Navigation__element"><a href="/#home">HOME</a></li>
+            <li class="Navigation__element"><a href="/#about">ABOUT</a></li>
+            <li class="Navigation__element"><a href="/#portfolio">PORTFOLIO</a></li>
+            <li class="Navigation__element"><a href="/#resume">RESUME</a></li>
+            <li class="Navigation__element"><a href="/#contact">CONTACT</a></li>
+          </ul>
+        </nav>
+    </div>
+
+    
+    <div class="Project">
+      <div class="Project__row">
+        <div class="Project__column">
+            <a href="/livedemo/ticketbeast"><h1>Ticketbeast - TDD course</h1></a>
+            <p>
+              Ticketbeast is a course on test driven development (TDD) with Laravel and PHP by Adam Wathan. In the course, students build out a web application where concert promoters can sell tickets, and every line of code is written with the TDD ethos in mind. Every significant behavior of the application is driven out by pre-written tests. Over 3000 lines of test code was written to prove the application is working as intended. Adam Wathan provides many insights into TDD, PHP and Laravel development throughout the course. I found it very engaging and educational to follow along. 
+              </br></br>
+              To check out the full extent of Ticketbeast’s features, you can log onto a test user with the following credentials: </br>
+              Email: user@test.com</br>
+              Password: testpass</br></br>
+              If you want to try to purchase some tickets, you can do so by using any email address, combined with: </br>
+              Card number: 4242 4242 4242 4242</br>
+              Expiration date: any date in the future</br>
+              CVC: any three-digit number
+            
+            </p>
+        </div>
+        <div class="Project__column">
+            <a href="/livedemo/ticketbeast"><img src="../images/TicketBeast_frontpage.png" alt="Ticketbeast front page"></a>
+          </div>
+      </div>
+      
+      <div >
+
+      </div>
+    </div>
+
+
+
+    <div class="Features">
+      <h2 class="Section__title">Features</h2>
+      <p class="Features__paragraph">
+
+        This application allows concert promoters to advertise concerts and sell tickets. The application integrates with Stripe.com, and is developed to be able to take actual payments from credit/debit cards.
+
+      </p>
+
+      <div class="Features__container">
+          <div class="Features__element">
+              <h3 class="">1. Create, edit and publish concerts</h3>
+              <img src="/images/TicketBeast_yourconcerts.png">
+              <p class="">
+                The site administrator sends an invitation email, using an artisan command. With a link provided in the email, the promoter is able to sign up to the site. When signed in, the promoter is able to add concerts to the system. The concerts stay hidden from others until the promoter is satisfied with the information and decides to publish it. Between the time of creation and publishing, the promoter is able to edit the concert details.
+              </p>
+          </div>
+          <div class="Features__element">
+              <h3 class="">2. Sell tickets and take payments</h3>
+              <img src="/images/TicketBeast_buytickets.png">
+              <p class="">
+                Once a concert is published, the public can purchase tickets. The application integrates with Stripe.com, enabling online payments using an OAuth framework. The customer decides how many tickets she wants to buy, enters her credit card information and the rest is handled by stripe. Once the payment has been made successfully, an order for the tickets is created. The customer is redirected to a page showing her tickets, with unique ticket codes. Ticketbeast automatically takes a 10% platform fee, the rest of the money goes directly into the promoter’s Stripe account.
+              </p>
+          </div>
+          <div class="Features__element">
+              <h3 class="">3. Concert Management</h3>
+              <img src="/images/TicketBeast_ordersummary.png">
+              <p class="">
+                The promoters can see details like, how many tickets have been purchased, how many are left and how much revenue has been generated. Promoters can also get information about the latest purchases made; who bought the tickets, how many tickets were purchased and so on. I the event a promoter needs to get some information out to all attendees of a concert, she is able to do so from within the application.
+              </p>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="Technologies">
+      <h2 class="Section__title">Technologies involved</h2>
+      
+      The Ticketbeast project is all about test driven development (TDD) and the Laravel framework. Very few services and features exogenous to the Laravel ecosystem was used. The notable once was PHPUnit, Stripe and MySQL.</br></br>
+      The Ticketbeast application is hosted on the same server as didrikfleischer.com, a t2.micro with Ubuntu on AWS. The site is behind a Nginx http server, configured as a reverse proxy. A local MySQL server is used to provide persistent storage of user data. The source code is written in PHP using the Laravel framework. </br></br>
+      Out of the box, Laravel uses PHPUnit as its testing framework. The assertion logic is provided by PHPUnit rather than Laravel itself. Laravel comes with many useful testing features beyond PHPUnit, like; using Mockery to mock objects (like Eloquent models), fakes for many of Laravels core classes and using sqlite as an in-memory database. </br></br>
+      Stripe is a software platform for running an internet business. They handle billions of dollars every year. They take care of managing and storing sensitive user data, like credit card information, and interfaces with banks around the world to process payments, transfers, disputes, refunds and much more. By using an OAuth framework, developers can enable their applications to take payments and set up subscriptions, all without having to worry about the regulatory requirements and technicalities of handling and storing sensitive financial data. Ticketbeast use stripe to take payments for concert tickets, pay promoters and gathering platform fees. Since the application is just for show, the API keys in use only support test data. No actual card can be charged without changing the API keys. </br></br>
+      Due to me not being able to take much credit for the source code of Ticketbeast, I decided to show my understanding though a compilation of tips and insights I gathered throughout the course. Take a look in the section below. </br></br>
+      </br></br>
+      
+      <h2 class="Section__title">Tips and Insights</h2>
+      In this section I list a collection of tips and insights I gathered throughout the Ticketbeast course. I’ve split them into themed sections, but beyond this, there is lack of structure. I understand that many of the point below are a matter of preference and subjective opinion, but I’m going to make them regardless. Often, I won’t get into the details of the point I’m making, keeping it short and sweet (or just wage?). This section is for developer’s eyes. </br></br>
+      
+      <h3>Test Driven Development and PHPUnit</h3>
+      <ul>
+        <li>
+          The overall approach:
+          <ol>
+            <li>Fist write a high-level feature test</li>
+            <li>Then write unit tests to flush out the feature and get it to a green state</li>
+            <li>Unit tests are written to support the higher-level feature test</li>
+            <li>Unit tests are written for better feedback when running the tests, and are sort of redundant</li>
+            <li>When a unit test is not passing, but our feature test is, then maybe there are something in the unit tests that we are testing for, but do not actually need.</li>
+          </ol>
+        </li>
+        <li>-	There is a concept of code smells; characteristics of code that is indicative of its bad quality, and that it should be improved. There are many such smells and solutions. A couple of them are: 
+          <ul>
+              <li>Long parameter list (one solution is: preserve the whole object)</li>
+              <li>Feature envy; one object is very interested in the internal workings of another object (one solution is: let the object owning all the information do the work the other object wants done)</li>
+          </ul>
+        </li>
+        <li>It can be hard to see if you are not working in a TTD way, but if you get effective with a test library and develop a development flow and environment that allows you to quickly run your tests, working in a TDD way can speed up development and ensure better code.</li>
+        <li>When first starting out with a new project, ask yourself; what is the core features of the application? What can be done manually by an administrator and does not need to be implemented right away? start working on the core features of the app as soon as possible.</li>
+        <li>All data relevant to the assert step should be explicitly created in the arrange step of the test.</li>
+        <li>You might want to revise test method names and scope as you go along</li>
+        <li>Don’t add anything to your system without it being forced out by a test. You could run the risk of removing something in the future, and still having your test passing, when the system is in reality broken.</li>
+        <li>When adding redundant test coverage due to testing a refactor you are doing, you must weigh the added benefit of more expressive error messages against the cost of a bigger test suite (maintenance cost and time required to run the test).</li>
+        <li>You can add methods, used only for testing, to you models. They are going to be somewhere on your codebase anyways.</li>
+        <li>Only refactor when your tests are passing.</li>
+        <li>Write out all assertions for the logic you want before you start actually implementing the features. The error reported when running the test drives the development of your application.</li>
+        <li>Write tests for logic and behavior, not for design decisions or where to sprinkle links etc.</li>
+        <li>TDD may not be the best way to drive out static pages. In one of the tutorials, it was decided not to drive out the login page with TDD, and simply scaffolded it out. Tests for the actual login controller was written though, and confirmed that the logic behind logging a user in, was working as expected.</li>
+        <li>We don’t worry about asserting what exactly an error string should be, just knowing that it is there is enough. In the end, this is a design decision, that the design team may want to change at any moment.</li>
+        <li>A real refectory is introducing changes to your code towards some desired end state while keeping your test passing throughout the process.</li>
+        <li>Make sure you have tests proving that you need each piece of code you are writing.</li>
+
+      </ul>
+    
+    </div>
+
+
+    <div class="Learned">
+      <h2 class="Section__title">Conclusion</h2>
+      I have been in the “virtual presence” of a true PHP and Laravel master. It was engaging and interesting to follow along Adam Wathan’s thought processes when building out a real, production ready application. After seeing how TDD can be applied to the development work flow, I will strive to adopt the approach into my future projects. Writing tests introduces, in some ways, more complexity into the workflow, and higher demands on the developers. A testing framework and assertion library must be mastered and the TDD way of working must be adapted to. Although this can be challenging, I do believe the grass is greener on the other side.
+    </div>
+
+
+    <footer class="Footer">
+      <p class="Footer__thanks">Thank you for taking a look!</p>
+
+      <nav class="Footer__navigation">
+        <ul class="Navigation__list">
+            <li class="Navigation__element"><a href="/#home">HOME</a></li>
+            <li class="Navigation__element"><a href="/#about">ABOUT</a></li>
+            <li class="Navigation__element"><a href="/#portfolio">PORTFOLIO</a></li>
+            <li class="Navigation__element"><a href="/#resume">RESUME</a></li>
+            <li class="Navigation__element"><a href="/#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <p class="Footer__createdby">Created by Didrik Fleischer</p>
+
+
+      <div class="Footer__links">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/didrik.fleischer"><i class="fab fa-facebook-square"></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/didrik-fleischer-a6623533/"><i class="fab fa-linkedin"></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/DidrikF"><i class="fab fa-github-square"></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/FleischerDidrik"><i class="fab fa-twitter-square"></i></a>
+      </div>
+
+    </footer>
+  </body>
+</html>
