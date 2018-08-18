@@ -38,7 +38,7 @@
         <div class="Project__column">
             <a href="/livedemo/codetube"><h1>Codetube - Youtube clone</h1></a>
             <p>
-                The Codetube project is an online course created by Codecourse Ltd. I worked on this early in 2017, trying to sharpen my Laravel and Vue skills. I needed more experience building real projects I thought, but what to build? I also felt like I did not know enough to successfully design and build out every aspect of a more complicated application. I had watched some Youtube videos by a channel named Codecourse in the past and found it very educational. When I heard the man behind the youtube channel had made an online video coursing site I had to check it out. Browsing around I saw the Codetube course and it looked interesting. “Exactly what I’m looking for” I thought to myself. Building the app side by side with the instructor was a good learning experience and definitely brought my web development skills to the next level.
+                The Codetube project is an online course created by Codecourse Ltd. I worked on this early in 2017, trying to sharpen my Laravel and Vue skills. “I need more experience building real projects”, I thought, but what to build? I also felt like I did not know enough to successfully design and build out every aspect of a more complicated application. I had watched some YouTube videos by a channel named Codecourse. I found them very educational. When I heard the man behind the YouTube channel had made an online video coursing site, I had to check it out. Browsing around <a href=https://codecourse.com>codecourse.com</a>, I saw the Codetube course; it looked interesting. “Exactly what I’m looking for”, I thought to myself. Building the app side by side with the instructor was a good learning experience, and definitely brought my web development skills to the next level.    
             </p>
         </div>
         <div class="Project__column">
@@ -57,8 +57,8 @@
       <h2 class="Section__title">Features</h2>
       <p class="Features__paragraph">
 
-        Familiar with Youtube? Then you allready know what kind of features the Codetube project is trying to mimic. <br> 
-        Users can create their own channels, upload videos, watch videos and like, comment and subscribe.
+          Familiar with YouTube? Then you already know the kinds of features the Codetube project is trying to mimic. </br>
+          Users can create their own channels, upload videos, watch videos as well as like, comment and subscribe.
 
       </p>
 
@@ -67,21 +67,21 @@
               <h3 class="">1. Watch videos</h3>
               <img src="/images/feature_watchvideo.png">
               <p class="">
-                  When navigating to a video you get a screen like this. Here you can watch the video, subscribe to the channel that posted it, submit a like or dislike and post comments. The owner of the video can deside whether or not to allow comments and likes on the video in addition to edit the title, description and visibility (public or private). 
+                  When navigating to a video, you get a screen like the above. Here you can watch the video, subscribe to the channel that posted it, submit a like or dislike and post comments. The owner of the video can decide whether or not to allow comments and likes on the video in addition to edit the title, description and visibility (public or private).     
               </p>
           </div>
           <div class="Features__element">
               <h3 class="">2. Channel page</h3>
               <img src="/images/feature_channel.png">
               <p class="">
-                  Each channel has their own page. Here you can see the channels name, number of subscribers, number of total views and all the uploaded videos which are made public. Channels can also upload their own channel (profile) image.
+                  Each channel has their own page. Here you can see the channels name, number of subscribers, total number of views and all the uploaded videos, which have been made public. Channels can also upload their own channel (or profile) image.
               </p>
           </div>
           <div class="Features__element">
               <h3 class="">3. Search for videos and channels</h3>
               <img src="/images/feature_search.png">
               <p class="">
-                  The application uses Algolia, a hosted full-text, numerical, and faceted search engine. People can misspell and ignore capitalization, Algolia is smart enough to return good search results for matches on channel and video titles and descriptions.
+                  The application uses Algolia, a hosted full-text, numerical, and faceted search engine. People can misspell and ignore capitalization, Algolia is smart enough to return good and ordered search results for matches on channel and video titles and descriptions.   
               </p>
           </div>
       </div>
@@ -90,35 +90,34 @@
 
     <div class="Technologies">
       <h2 class="Section__title">Technologies involved</h2>
-      The Codetube project is an online course created by Codecourse Ltd. Although I cannot take credit for coming up with all the logic of the application, I did learn a lot following along with the course and I do understand how it works. I have made some minor changes to the original setup to make it a bit more suitable for display and also had to come up with some workarounds due to the trial period of the video transcoding service I used had ended. 
+      The Codetube project is an online course created by Codecourse Ltd. I cannot take credit for coming up with all the logic of the application, but I learned a lot taking the course. I have made some minor changes to the original setup in order to make it more suitable for display. I also had to come up with some workarounds due to the trial period of the video transcoding service used, had ended.
       </br></br>
 
-      Codetube is running on the same server (a t2.micro vm with Ubuntu on AWS) as all other applications available through the didrikfleischer.com domain. You access the server through Nginx, configured as a reverse proxy. The server side code is written in PHP using the Laravel framework and the client side code is written in JavaScript using the Vue framework. MySQL database server is used for persistent storage of user data. 
+      Codetube is running on the same virtual server (a t2.micro VM with Ubuntu on AWS) as didrikfleisher.com. You access the server through Nginx, configured as a reverse proxy. The server-side code is written in PHP using the Laravel framework and the client-side code is written in JavaScript using the Vue framework. MySQL database server is used for persistent storage of user data. 
       </br></br>
-      Most of the application is just CRUD APIs with authorisation logic. What I found interesting about this project was the usage of several external services to create the final user experience. Being able to outsource some of the heavy lifting to external services gives great power to developers who can then build much more complex and performant apps.
+      Most of the application is just CRUD APIs with authorization logic. What I found interesting about this project was the usage of several external services to create the final user experience. Being able to outsource some of the heavy lifting to external services gives great power to developers who can then build much more complex and performant apps.
       </br></br>
       I’ll now tell you some about the external services and software used by Codetube.
       </br></br>
 
-      All videos and images are stored on S3, an object based storage solution provided by AWS. Accessing data stored in S3 is dead simple. Because all S3 buckets share the same global namespace, all buckets are unique, and each bucket can be provided with its own unique URL. The objects being available through a web API makes accessing the object very easy, and can done directly from each web browser. Access to objects stored in S3 of course requires the entity has the necessary permissions. The codetube server have privileges to upload, move and delete files, but the client side only have permission to read them. 
+      All videos and images are stored on S3, an object-based storage solution provided by AWS. Accessing data stored in S3 is dead simple. Because all S3 buckets share the same global namespace, all buckets are unique, and each bucket can be provided with its own unique URL. The objects being available through a web API makes accessing the object very easy, and can done directly from each web browser. Access to objects stored in S3 of course requires the entity has the necessary permissions. The Codetube server have privileges to upload, move and delete files, but the client side only have permission to read them. 
       </br></br>
-      Codetube enables users to search the library of videos and channels. One might think that such functionality is easily achieved. One could simply use full-text search on the database tables for the desired output. But what about users misspelling, how to you rank order the results and how to achieve good performance? These are problems faced by many web applications and businesses have been created to solve exactly this problem. Algolia is one such service and provides a hosted full-text, numerical, and faceted search engine capable of delivering realtime results from the first keystroke. All you have to do is to keep your database in sync with Algolias, do some configuration and advanced search capabilities can be enjoyed by your users.
+      Codetube enables users to search the library of videos and channels. One might think that such functionality is easily achieved. One could simply use full-text search on the database tables for the desired output. But what about users misspelling, how to you rank order the results and how to achieve good performance? These are problems faced by many web applications and businesses have been created to solve exactly this problem. Algolia is one such service and provides a hosted full-text, numerical, and faceted search engine capable of delivering real-time results from the first keystroke. All you have to do is to keep your database in sync with Algolia’s, do some configuration and advanced search capabilities can be enjoyed by your users.
       </br></br>
       The original version of the application used Telestream to transcode videos from any format into mp4, the supported format of the client-side video player (Video.js). The user would upload the video to the didrikfleischer.com web server, which would send the video over to Telestream which would transcode the video into the mp4 format and then upload the video to S3. Due to Telestream being a payed service and my trial has ended, this whole process has been bypassed and users now upload their videos to the didrfkfleisher.com web server which then directly uploads it to S3.
       </br></br>
-      My web server does do some work with the video though. It uses FFmpeg to generate a thumbnail image taken from the first second of the uploaded video. FFmpeg is the the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created.
+      My web server does some work with the video though. It uses FFmpeg to generate a thumbnail image taken from the first second of the uploaded video. FFmpeg is the the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created.
       This image is also uploaded to S3 and is used when listing the video as well as a background on the video player.
       </br></br>
-      I had a lot of difficulty making the whole video uploading process work. Many things have to be thought of. First the user needs to be presented with a file input element. Then an instance of the FormData class must be created and the file added to it. Then an http client (like Axios) is used to send the file as a POST request to the Nginx server. The Nginx server, configured as a reverse proxy, then forwards the request to the php runtime which starts compiling and running the specified script.  </br>
-      But you have to remember to set permissions on the local folder used to temporarily store videos in order for the php runtime to be able to use it. Both Nginx and PHP also have configuration options that has to be set to allow larger files to be uploaded. The default values will only allow files of a few MB to be uploaded. And you have to remember to restart both the Nginx and PHP services for the configuration changes to take effect. And yes, I did not think of reloading the PHP service once I had made these changes, causing me more hours of frustration 😞. Oh well, I know better now. Once I had all this down it was fairly straight forward to use the league/flysystem-aws-s3-v3 package, an adapter for the aws-sdk-php v3 library, to upload the video to S3. 
+      I had a lot of difficulty making the whole video uploading process work. Many things have to be taken into consideration. First the user needs to be presented with a file input element. Then an instance of the FormData class must be created and the file added to it (if you want to use an AJAX request). Then an http client (like Axios) is used to send the file as a POST request to the Nginx server. The Nginx server, configured as a reverse proxy, then forwards the request to the PHP runtime which starts compiling and running the specified script.  </br>
+      But you have to remember to set permissions on the local folder used to temporarily store videos, in order for the PHP runtime to be able to use it. Both Nginx and PHP also have configuration options that has to be set, to allow larger files to be uploaded. The default values will only allow files of a few MB to be uploaded. You also have to remember to restart both the Nginx and PHP services for the configuration changes to take effect. And yes, I did not think of reloading the PHP service once I had made these changes, causing me more hours of frustration 😞. Oh well, I know better now. Once I had all this down, it was fairly straight forward to use the league/flysystem-aws-s3-v3 package, an adapter for the aws-sdk-php v3 library, to upload the video to S3. 
 
     </div>
 
 
     <div class="Learned">
       <h2 class="Section__title">Conclusion</h2>
-      I had an exelent experiense following along with the Codetube course by Codecourse Ltd. The project integrated so many external services, which was a way I was not used to working. It was eye-opening to see how a singel developer could get so much work done by leveraging web services built by others, harnessing the power of the web.
-
+      I had an excellent experience following along with the Codetube course by Codecourse Ltd. The project integrated many external services, which I had not seen in the past. It was eye-opening to see how a single developer could get so much done, by leveraging services built by others.
     </div>
 
 

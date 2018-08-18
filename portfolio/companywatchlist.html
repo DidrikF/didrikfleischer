@@ -38,7 +38,12 @@
         <div class="Project__column">
             <a href="/livedemo/companywatchlist"><h1>Company Watchlist</h1></a>
             <p>
-              Company watchlist was the fist web application of significant size I ever built on my own. The site went live in Mai of 2016, and stayed up for about a year. It integrated with the Yahoo Finance API and my domain eventually got blocked and later the API was discontinued. I therefore saw no point in keeping on paying for hosting. For the purpose of showing it of on my new personal home page; the site is brought back to life! But, all financial data is mocked and some features do not work. Another disclaimer: if you are wisiting on a mobile device, the CSS work will disapoint you. I never coded it to look good on smaller screens. Check the app out by clicking the link above or the image to the side. You can log onto a test user with the following creadentials:</br>Email: user@test.com</br>Password: testpass
+                Company watchlist was the first web application of significant size I ever built on my own. The site went live in Mai of 2016, and stayed up for about a year. It integrated with the Yahoo Finance API, but my domain eventually got blocked and later; the API was discontinued. </br>
+                For the purpose of showing it of on my personal home page; the site is brought back to life! But, all financial data is mocked and the notification feature do not work. Another disclaimer: if you are visiting on a mobile device, the CSS work will disappoint you. I never coded it to look good on smaller screens. Check out the app by clicking the link above or the image to the side.</br>
+                You can log in with a test user, using the following credentials:</br>
+                Email: user@test.com</br>
+                Password: testpass
+                
             </p>
         </div>
         <div class="Project__column">
@@ -57,8 +62,7 @@
       <h2 class="Section__title">Features</h2>
       <p class="Features__paragraph">
 
-        Find, review and keep track of companies you like by adding them to your watchlists. <br> 
-        Easily create notifications and get notified when company data changes.
+          Company Watchlist allows you to find, review and keep track of companies you like. You can search for companies by name or ticker. The search results contain links to dynamically generated pages, where you can review financial data about the company. Any thoughts you have, you can capture in a simple analysis form. If you want to keep an eye on the company going forward, you can create notifications and add the company to a “watchlist”.
 
       </p>
 
@@ -67,21 +71,21 @@
               <h3 class="">1. Review and analyze</h3>
               <img src="/images/company_page.png">
               <p class="">
-                  Search for a company you are interested in. On the company's page you find valuable financial data. After reviewing the company you can capure your thoughts by filling in a simple analysis form.
+                  You can search for a company you are interested in. The search results contain links to pages where financial data regarding each company is displayed. After reviewing the company, you can capture your thoughts by filling in a simple analysis form.    
               </p>
           </div>
           <div class="Features__element">
               <h3 class="">2. Add to watchlist</h3>
               <img src="/images/watchlist.png">
               <p class="">
-                  When you find a company you would like to keep an eye on in the future, you can add it to a watchlist. You can create as many watchlists as you want. For instance, you can make one for each industry you are following.
+                  When you find a company that you would like to keep an eye on in the future, you can add it to a watchlist. You can create as many watchlists as you want. For instance, you can make one for each industry you are following.    
               </p>
           </div>
           <div class="Features__element">
               <h3 class="">3. Set up notifications</h3>
               <img src="/images/notifications.png">
               <p class="">
-                  It's hard to keep track of market developments. We enable you to set up custom notifications. A notification consists of a set of conditions you define. When the conditions are met, you are made aware through email and the web GUI.
+                  Keeping track of market developments can be hard to do manually. Therefore Company Watchlist allow you to create notifications that will let you when certain developments have taken place. A notification consists of a set of conditions on financial data that you define. For example: when the price is below $100 and the P/E ratio is below 13. When the conditions are met, you are made aware through email and the web GUI. (Due to the discontinuation of the Yahoo Finance API, this feature no longer works)    
               </p>
           </div>
       </div>
@@ -111,24 +115,23 @@
     <div class="Technologies">
       <h2 class="Section__title">Technologies involved</h2>
       
-      Many components are required to get a simple app off the ground. Company Watchlist is hosted on the same server as didrikfleischer.com a t2.micro vm running in one of AWS’s data centers with Ubuntu 16.04. To access company watchlist the request goes through an Nginx web server configured as a reverse proxy. The server side language the app is written in is PHP, using the Laravel framework. Laravel is mature and feature rich. It solves pretty much all common PHP development problems, and does so while still being flexible enough for you not to feel too restricted in terms of what technologies you want to use. I’ve written about the Laravel framework at some length, you can find it <a href="/livedemo/companywatchlist/about">here</a>.
-      For persistent storage of user data MySQL is used. Laravel has many useful solutions when working with databases and makes the interaction with the MySQL server a breeze.</br>
+      Many components are required to get a simple app off the ground. Company Watchlist is hosted on the same server as didrikfleischer.com, a t2.micro VM, with Ubuntu 16.04, running in one of AWS’s data centers. To access Company Watchlist the request goes through a Nginx web server, configured as a reverse proxy. The server-side language is PHP, using the Laravel framework. Laravel is mature and feature rich. It solves pretty much all common PHP development problems, and does so while still being flexible enough to opt in the technologies you want to use. I’ve written about the Laravel framework at some length, you can find it <a href="/livedemo/companywatchlist/about">here</a>.
+      MySQL is used for persistent storage of user data. Laravel has many useful solutions when working with databases and makes the interaction with the MySQL server a breeze.</br>
 
-      On the client side, the dynamic features of Company Watchlist written in JavaScript using Vue, a hugely popular framework.</br></br>
+      On the client side, the dynamic features of Company Watchlist is written in JavaScript, using Vue, a hugely popular framework.</br></br>
 
-      Some external services was also integrated with the project. The Yahoo Finance API was used to pull company's financial data, but due to the API being discontinued all data seen now is mocked. The notification feature of the app also does not work, due to the same reason. The app therefore has no utility, but retains the same look and feel as when it was working.</br>
-      I also experimented some with an error reporting service called Sentry. By aggregating the exceptions that are thrown together with the requests that caused them into Sentry, you get great insight into how to improve your code or start trouble shooting problems.</br>
-      The email delivery service “Mailgun” was used by the app to send notification and registration emails.
+      Some external services were also integrated with the project. The Yahoo Finance API was used to pull company financial data. Unfortunately, the API was discontinued, and all data now seen, is mocked. The notification feature of the app also does not work, for the same reason. Company Watchlist therefore has no utility, but retains the same look and feel as when it was working.</br>
+      I also experimented some with an error reporting service called Sentry. By aggregating the exceptions that are thrown together with the requests that caused them into Sentry, you get insight into how to start trouble-shooting and improve your code.</br>
+      The email delivery service: Mailgun, was used by the app to send notification and registration emails.
+
     
 
     </div>
 
 
     <div class="Learned">
-
-
       <h2 class="Section__title">Conclusion</h2>
-      At the point when I wrote Company Watchlist I had never built anything close to its size. I got a lot more familiar with Laravel and Vue as well as how to bring an app from idea to production. It was a great learning experience. You can read a lot more about the project on the Company Watchlist <a href="/livedemo/companywatchlist/about">about page</a>.
+      At the point when I wrote Company Watchlist I had never built anything close to its size. I got a lot more familiar with Laravel and Vue, as well as how to bring an app from idea to production. It was a great learning experience. You can read a lot more about the project on the Company Watchlist <a href="/livedemo/companywatchlist/about">about page</a>.  
     </div>
 
 
