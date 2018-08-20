@@ -217,6 +217,11 @@ a {
   padding: 30px 5%;
 }
 
+.Image--wide {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
 
 
 
