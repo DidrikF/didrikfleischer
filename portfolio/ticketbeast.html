@@ -183,7 +183,7 @@
             <li>Several of Laravel’s classes are macroable, this has many potential uses (make things read nicer, etc…)</li>
             <li>Although the concurrency model in PHP is dead simple, race condition still occur; watch out!</li>
             <li>You can create helper methods on the base TestCase class. This can aid when refactoring, because you’ll have centralized some of the logic. </li>
-            <li>You could create custom Model Factory Classes, but then you should put them directly under the database folder and not under database/factories, because of how Laravel automatically loads files in this directory. </li>
+            <li>You can create custom Model Factory Classes, but then you should put them directly under the database folder and not under database/factories, because of how Laravel automatically loads files in this directory. </li>
             <li>Writing tests that forces controllers to return views, will catch errors in the views and report them. You get this feedback "for free”.</li>
             <li>Using a table as a pivot table between two other tables (expressing a one-to-many relationship though a third table), requires that the pivot table has only one entry for each pair of ids from the two tables being connected. (Eloquent related)</li>
             <li>Laravel provides helpers for mocking events, jobs, and facades out of the box. These helpers primarily provide a convenience layer over Mockery so you do not have to manually make complicated Mockery method calls. Of course, you are free to use Mockery or PHPUnit to create your own mocks or spies.</li>
@@ -222,7 +222,7 @@
     <div class="Learned">
       <h2 class="Section__title">Conclusion</h2>
       <div class="Text__container">
-        I have been in the “virtual presence” of a true PHP and Laravel master. It was engaging and interesting to follow along Adam Wathan’s thought processes when building out a real, production ready application. After seeing how TDD can be applied to the development work flow, I will strive to adopt the approach into my future projects. Writing tests introduces, in some ways, more complexity into the workflow, and higher demands on the developers. A testing framework and assertion library must be mastered and the TDD way of working must be adapted to. Although this can be challenging, I do believe the grass is greener on the other side.
+        I have been in the “virtual presence” of a true PHP and Laravel master. It was engaging and interesting to follow along Adam Wathan’s thought processes when building out a real, production ready application. After seeing how TDD can be applied to the development workflow, I will strive to adopt the approach into my future projects. Writing tests introduces, in some ways, more complexity into the workflow, and higher demands on the developers. A testing framework and assertion library must be mastered and the TDD way of working must be adapted to. Although this can be challenging, I do believe the grass is greener on the other side.
       </div>
     </div>
 

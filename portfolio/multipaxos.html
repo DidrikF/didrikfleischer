@@ -36,9 +36,12 @@
     <div class="Project">
       <div class="Project__row">
         <div class="Project__column">
-            <a href="/livedemo/codetube"><h1>Project Heading</h1></a>
+            <a href="/livedemo/codetube"><h1>Multi PAXOS</h1></a>
             <p>
-                Short summary about the project
+                In the second semester of my masters in Industrial Economics, I took a class on Distributed Systems. Throughout the semester we worked on writing an implementation of the Multi PAXOS algorithm in Go. The Multi PAXOS algorithm addresses a fundamental problem in distributed computing, namely; consensus. In a distributed system, multiple computers work together to achieve a common goal. Often, we require that all the computers agree on a common value during computation. This is a challenging problem by itself, and is not made any easier by also having to factor in the possibility of failing nodes. We want the system to achieve reliability despite an unstable environment, where computations and messages can take an arbitrary amount of time, and processes can crash and may or may not restart. 
+                In addition to implementing the Multi PAXOS algorithm we also built a distributed state machine on top of it, mimicking a simple banking system where users could make deposits, withdraws and do transfers. A web client was also developed, for users to interact with the system. The web client communicates with the servers over WebSocket connections. 
+                Students worked in pairs on the project, and I share the code-base with fellow student; Magnus Gustavsen.
+
             </p>
         </div>
         <div class="Project__column">
@@ -57,30 +60,30 @@
       <h2 class="Section__title">Features</h2>
       <p class="Features__paragraph">
 
-        Short into to the features
+          The software can be distributed across multiple machines and achieve consensus on multiple ordered messages and use a distributed state machine to independently transition the system between different states. As long as a majority quorum (N/2+1 processes) have not crashed, and communication is not compromised, the system will eventually be able to agree on new messages. After crashing, nodes can be recovered and will automatically sync up with the system. Clients can interact with the distributed system using a Web client, communicating with the servers in real-time across WebSocket connections. 
 
       </p>
 
       <div class="Features__container">
           <div class="Features__element">
-              <h3 class="">1. Feature 1</h3>
-              <img src="/images/feature_watchvideo.png">
+              <h3 class="">1. Consensus among nodes</h3>
+              <img src="/images/paxos_servers_in_sync.png">
               <p class="">
-                  About feature 1
+                  The Multi PAXOS algorithm ensures that a majority of nodes in the system agree on a common sequence of values. Nothing stands in the way of this value being a command of arbitrary complexity. A state machine could be built to make any number of actions based on these incoming commands and move the system into a new state. Because the PAXOS algorithm guarantee that each value (command) will be delivered in the same order at each node, we can with certainty know that the state of the nodes will not deviate. That is, of course, provided that each command has a deterministic outcome; meaning that the execution of each command does not have a stochastic element. 
               </p>
           </div>
           <div class="Features__element">
-              <h3 class="">2. Feature 2</h3>
-              <img src="/images/feature_channel.png">
+              <h3 class="">2. Banking system</h3>
+              <img src="/images/paxos_bank_client.png">
               <p class="">
-                  About feature 2
+                  The distributed state machine built on top of the Multi PAXOS algorithm, is a simple banking system. To interact with the bank, a web client was developed. All communication between servers and clients is done over WebSocket connections. Users can sign register with “the bank”, make deposit, withdrawals and perform transfers to other accounts. Users can also get their transaction histories and current balance.    
               </p>
           </div>
           <div class="Features__element">
-              <h3 class="">3. Feature 3</h3>
-              <img src="/images/feature_search.png">
+              <h3 class="">3. Web Client</h3>
+              <img src="/images/paxos_benchmark.png">
               <p class="">
-                  About feature 3
+                  The assignment included development of a benchmarking feature. In the web client, the user can generate random accounts (using faker). Using these generated accounts, the user can run benchmarks with arbitrary amounts of transactions. Some simple statistics, like; the minimum, maximum, mean and standard deviation of response times is calculated when the transactions are all processed.
               </p>
           </div>
       </div>
@@ -89,13 +92,68 @@
 
     <div class="Technologies">
       <h2 class="Section__title">Technologies involved</h2>
-      About the technologies involved
+      The server code, implementing Multi PAXOS, a distributed state machine and a web server, was almost entirely written in vanilla Go code. We only used packages from the standard library, with the exception of the gorilla/websocket package. 
+      I will not get into the details of how the Multi PAXOS algorithm works, but if you are interested; I have linked to the papers we used to understand and write our implementation of the Multi PAXOS algorithm.</br>
+      Paxos Made Simple</br>
+      <a href"https://lamport.azurewebsites.net/pubs/paxos-simple.pdf">https://lamport.azurewebsites.net/pubs/paxos-simple.pdf</a></br>
+      Paxos Made Moderately Complex</br>
+      <a href"http://www.cs.cornell.edu/home/rvr/Paxos/paxos.pdf">http://www.cs.cornell.edu/home/rvr/Paxos/paxos.pdf</a></br>
+      Tutorial Summary: Paxos Explained from Scratch</br>
+      <a href"http://www.ux.uis.no/~meling/papers/2013-paxostutorial-opodis.pdf">http://www.ux.uis.no/~meling/papers/2013-paxostutorial-opodis.pdf</a></br>
+      PAXOS for system Builders </br>
+      <a href"http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.139.7045&rep=rep1&type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.139.7045&rep=rep1&type=pdf</a>
+
+      Some illustrations where made in preparation for the oral examination, conducted at the end of the course, where knowledge of PAXOS and the code base should be demonstrated. They are design to get an overview of how the codebase worked and was structured. 
+      <img src="/images/paxos_messages_functions.png" alt="PAXOS system messages and functions">
+
+      In the above illustration, you see the message flow of the application. It starts with the client requesting HTML, CSS and JavaScript files from the web server. Once this is completed, the client will establish WebSocket connections to each server. The client tries to submit a Value-message to the server assuming the role of proposer (leader). The Value-message contains a command and parameters to be executed by the banking system (a distributed state machine). The proposer will then initiate communications with the other servers, trying to get promises from a majority quorum of servers, stating that this value will be taken up by them as the next value in the series of ordered values. Once a majority quorum of promises is obtained by the proposer, the proposer will send out Accept-messages; moving the algorithm to the next phase. In this phase; the servers which received the Accept-messages will emit Learn-messages to all servers in the system. Once a server has received a majority quorum of Learn messages, it is safe to assume that distributed system, as a whole, will not forget about the new addition to the series of ordered Values-message (provided: N>2f). Each server can therefore deliver the command and accompanying parameters to its instance of the distributed state machine, which will independently perform computations accordingly.  </br>
+      The result of the distributed state machines computations is delivered to the web server, which will compose and send a response to the client over the active WebSocket connection. </br>
+      Many intricate details of this whole process have been left out, for the sake of simplicity. If you are interested in the nitty-gritty details; I point you in the direction of the codebase. Its publicly available on GitHub.</br></br>
+      The server code can be thought of as a collection of quasi-independent subroutines; each being one or several go-routines (very light-weight thread). The most noteworthy once are named in the illustration above, on the left side. As the codebase evolved, more and more goroutines were introduced. Towards the end it was quite hard to reason about the order of execution in the system. So many independently executing peace’s of code, scheduled in at unknown times. Many hours in frustration over dead-locks and race conditions we could not locate easily. It was a hard lesson in concurrent programming. A diagram over the goroutines in the system, with descriptive names and goroutine of origin, is seen below. Some of the goroutines would be duplicated several times. At minimum; 22 goroutines were running, at each server. 
+
+      <img src="/images/paxos_goroutines.png" alt="PAXOS go routines">
+
+      Some work also went into building out the web client. Native WebSocket objects were used for server communication, and the Vue framework was used to dynamically render the different views, based on the changing state of the application. The most challenging part of the web client was to write code to be able to run benchmarks on response times of the requests. A class was written to bind together the multiple WebSocket objects, managing active connections, and functionality to register and execute listeners based on messages being received on any of the WebSocket objects. </br></br>
+      One of the limitations we should impose on the client, was that only one server request should be “in-flight” at any time. Therefor this restriction was also coded in, together with a queueing system, allowing the consumer of the class to register as many requests as he or she wanted, at any time, without any worries. They should all be handled in due time. An illustration of the different parts of the web client can be found below.
+
+      <img src="/images/paxos_event_client.png" alt="PAXOS web client">
+
+      The illustrations were built with LucidCharts.com, and you can review them in higher resolution <a href="https://www.lucidchart.com/documents/edit/74a67f92-0d74-4c7e-ae34-d26b8e567bb5/0?shared=true&">here</a>.</br></br>
+
+      <!--
+      Some features I want to highlight and some thoughts on improvements are listed below.
+
+      <h3>Highlights</h3> 
+      <ol>
+        <li>Logger - Singe go-routine writes to file, no concurrent writing. - Using Go's language features </li>
+        <li>Non-leader failed nodes are brought up to speed on recovery </li>
+        <li>"Rich" functionality of bankmanager - Users owning accounts - Authentication - Authorization </li>
+        <li>Event driven architecture of web socket manager in JavaScript </li>
+        <li>Bank management page in web client - Logger writes log messages to channel that end up being sent over web socket (all nodes can push logs down to the client) - Web client has web socket connections to all nodes and uses updates from the leader-detector (pushed over web socket) to "redirect" to new leader. - Get all accounts - Get all transaction results - Get all decided values </li>
+        <li>Graphing response times chronologically, sorted and the resulting normal distribution </li>
+        <li>Only partly decoding messages from web sockets to get the type of message and subsequently decoding the data field into the appropriate type. </li>
+        <li>The integrity of the data is ensured by node-to-node encryption </li>
+      </ol>
+
+      <h3>Improvements</h3>
+      <ol>
+        <li>Improve protection of potentially concurrently accessed data </li>
+        <li>Make properties not needed from the outside private </li>
+        <li>Big network message type </li>
+        <li>Better cleanup of go-routines </li>
+        <li>More tests </li>
+        <li>Things tended to grow together towards the end, making the code harder and harder to reason about</li>
+      </ol>
+    -->
     </div>
 
 
     <div class="Learned">
       <h2 class="Section__title">Conclusion</h2>
-      Short conclusion and key takeaways
+      If found the class on distributed computing very useful. My understanding of computer science greatly increased over the semester. I had to become familiar with a lot of new terminology, making me a more effective communicator in the field. Being forced to read academic papers, understand distributed algorithms and implement them, broadened my horizon.
+      Learning a new language also proved itself useful. Having to work with the more complex concurrency model of Go, forced me to get a deeper understanding of deadlocks, resource starvation, race conditions, different types of mutexes, OS threads and the role of schedulers. I also got a deeper understanding of JavaScript and PHP by learning Go. When learning a new language, you can contrast it with the once you already know, and gain new insights. 
+      I am happy to report I got an A on both the lab assignment (implementing Multi PAXOS in Go) with concluding oral exam, as well as the written exam. 
+
     </div>
 
 
