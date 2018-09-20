@@ -37,13 +37,17 @@
     <div class="Project">
       <div class="Project__row">
         <div class="Project__column">
-            <a href="/portfolio/didrikfleischer.html"><h1>didrikfleischer.com</h1></a>
+            <a href="/"><h1>didrikfleischer.com</h1></a>
             <p>
-                This page is under development
+              At the time of writing, I am one year away from completing my master’s degree, and my academic career. I will transition from student to employee, and the transition will be permanent. I guess I have been thinking for the past two years, that it would be really cool with a job involving programming. It’s one of the reasons why I started with programming and web development to begin with. I have been quite consistent with regards to putting the hours into getting better. Of course, it has been a bit on and off. I have had other duties to attend to. </br></br>
+              From the beginning I have had a vision for an investment analysis web application, where private investors could conduct and organize their investment analyses. I’ve spent much time, planning and designing the different features I wanted the site to deliver. This ambition is what has driven much of my learning. I would identify the technologies and techniques I would need to be familiar with to build a feature, start reading about it and build small test projects to get a grasp of it. Although I have touched on many things, I have less to show for it than I’d hoped. My investment analysis application has proven to be too much for me to handle at this time. It was an ambitious project, I don’t think I should feel too bad. </br></br>
+              But it left me with a problem; I want a job in programming, in technology, in web development, but my master’s degree is primarily about finance and investing. Only 20 out of 120 credits have anything to do with programming and computer science. There might be educations better suited to prepare me for work in web development, but none the less; I have spent hundreds, even thousands of hours practicing on my own. I’m obviously very interested in this, and I’m no longer at a beginner level. </br></br>
+              So, what could I do to demonstrate my skill and dedication to web development? Building a personal website from scratch, where my portfolio of projects and completed courses could be highlighted, seem like the obvious answer. Doing so would demonstrate my familiarity with AWS, Nginx, Linux, PHP, JavaScript, CSS, HTML, HTTP, HTTPS, WebSockets, DNS, Golang, Python, Vue, Laravel, Express, Koa, MySQL, MongoDB and much more. The whole endeavor has probably taken close to 150 hours of work. Completing old projects, making them more presentable, writing articles, setting up the server and configuring everything took quite some time. More than I anticipated. A recurring theme I would say.
+              
             </p>
         </div>
         <div class="Project__column">
-            <a href="/portfolio/didrikfleischer.html"><img src="../images/didrikfleischer_frontpage.png" alt="Company Watchlist front page"></a>
+            <a href="/"><img src="../images/didrikfleischer_frontpage.png" alt="Company Watchlist front page"></a>
           </div>
       </div>
       
@@ -52,36 +56,35 @@
       </div>
     </div>
 
-    <!--
 
     <div class="Features">
       <h2 class="Section__title">Features</h2>
       <p class="Features__paragraph">
 
-        Short into to the features
+        DidrikFleischer.com is my personal website and was creted to share information about me, my projects and have live demos of my work.
 
       </p>
 
       <div class="Features__container">
           <div class="Features__element">
-              <h3 class="">1. Feature 1</h3>
-              <img src="/images/feature_watchvideo.png">
+              <h3 class="">1. Get information about me</h3>
+              <img src="/images/didrikfleischer_about.PNG">
               <p class="">
-                  About feature 1
+                The site enables me to share information about myself; my background, my interests and my experience. My CV is available for download and for those who wish to reach out, contact information is also listed. 
               </p>
           </div>
           <div class="Features__element">
-              <h3 class="">2. Feature 2</h3>
-              <img src="/images/feature_channel.png">
+              <h3 class="">2. Read about my projects</h3>
+              <img src="/images/didrikfleischer_article.PNG">
               <p class="">
-                  About feature 2
+                Each project that I put up on didrikfleischer.com have an accompanying article, where I write about the features of the application and the technologies I’ve used.
               </p>
           </div>
           <div class="Features__element">
-              <h3 class="">3. Feature 3</h3>
-              <img src="/images/feature_search.png">
+              <h3 class="">3. Live demos</h3>
+              <img src="/images/chatapp_chat.PNG">
               <p class="">
-                  About feature 3
+                Having the apps running live allows anyone around the world to take a look on the apps. This is one of the great powers of the web; all it takes to share is a link.
               </p>
           </div>
       </div>
@@ -90,15 +93,22 @@
 
     <div class="Technologies">
       <h2 class="Section__title">Technologies involved</h2>
-      About the technologies involved
+      The site is dead simple, it’s just a set of hyperlinked static pages. Pure HTML and CSS. Not even a single line of JavaScript. The challenge for me was more in relation to setting up the web server. In the past, when I published a project to the web, I had used a service (Laravel Forge) which automatically created the virtual machine in AWS, installed all needed software and configured everything automatically. My PHP development machine was a preconfigured, all included vagrant box, called Laravel Homestead. For node development, you just install Node and NPM comes packaged with it. I had not yet learned about any Node process managers, so how to best run Node code in production was foreign to me. In other words; many things, I did for the first time, when setting up the didrikfleischer.com web server. </br></br>
+      I registered and configured the domain through Amazon’s Route 53 service. I used Amazon’s Elastic Compute Cloud to run a t2.micro instance with Ubuntu. </br></br>
+      I have installed and use both a MySQL database and a MongoDB database. Using both an SQL and a no-SQL (document database) have given some insights into the pros and cons of the two major kinds of databases. I also find Graph databases interesting and I think we will see more and more adoption of this approach in the future. A project involving Graph databases I plan to do in the future. </br></br>
+      Further I have installed and setup PHP, Node.js and Go on the server, as I have applications written in all three languages. No major difficulty has encountered while doing this. </br></br>
+      All the applications are hosted behind an NginX reverse-proxy, allowing a single entry-point to the entire site, despite the many servers involved. Quite a bit of time was required to configure it all. How to make that paths forwarded from NginX to the different app servers relative to ‘livedemo/app_name/’? How to allow bigger file uploads than the default limit? How to set header fields on the requests forwarded from NginX? How to configure what version of PHP NginX should use? How to make WebSocket connections work through the reverse-proxy? These are all questions that needed an answer. </br></br>
+      In the future I’d like to configure NginX to support HTTPS. Terminating the TLS connections/tunnels at the NginX web server elevates the security of all servers running behind it, while not burdening me with having to set up HTTPS on all the application servers. </br>
+      I would also like to redesign the whole thing and use a templating engine instead of the static HTML pages. To much code is duplicated around for comfort. </br>
+      The images I use could also use some work, to make them all conform to the same dimensions and make them smaller would result in a better look and experience.
+
     </div>
 
 
     <div class="Learned">
       <h2 class="Section__title">Conclusion</h2>
-      Short conclusion and key takeaways
+      A spent a good chunk of my summer building didrikfleischer.com, but despite the many difficulties and frustrations I encountered, I am very happy I did it. I have learned so much and I now have a place where I can share all my future projects.
     </div>
-    -->
 
     <footer class="Footer">
       <p class="Footer__thanks">Thank you for taking a look!</p>

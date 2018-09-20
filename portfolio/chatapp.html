@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <title>Didrik Fleischer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Roboto|Italiana" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/portfolio_style.css">
+  </head>
+  <body>
+    <div class="Banner">
+      <div class="Banner__frame">
+        <img class="Banner__profilepicture" src="../images/profile_picture.png" alt="Profile picture missing">
+      </div>
+
+      <div class="Banner__text">
+        <h1 class="Banner__heading">DIDRIK FLEISCHER</h1>
+        <p class="Banner__subheading">MSc student in industrial economics and</br>aspiring web developer</p>
+      </div>
+
+
+      <nav class="Banner__navigation">
+          <ul class="Navigation__list">
+            <li class="Navigation__element"><a href="/#home">HOME</a></li>
+            <li class="Navigation__element"><a href="/#about">ABOUT</a></li>
+            <li class="Navigation__element"><a href="/#portfolio">PORTFOLIO</a></li>
+            <li class="Navigation__element"><a href="/#cv">CV</a></li>
+            <li class="Navigation__element"><a href="/#contact">CONTACT</a></li>
+          </ul>
+        </nav>
+    </div>
+
+    
+    <div class="Project">
+      <div class="Project__row">
+        <div class="Project__column">
+            <a href="/livedemo/chatapp"><h1>Chat App</h1></a>
+            <p>
+              Chat App is a Didrik Fleischer original creation. I built a much less visually pleasing app that provided the same features, give or take, a year ago. This iteration was made to demonstrate my familiarity with Node.js, WebSockets use Socket.io, Express and Vue. The design is also mine, though I do have to give attribution to <a href=”https://www.freepik.com/”>Freepik</a> for the illustrations. </br></br>
+              I’ve spent more time on JavaScript and Node.js than what my portfolio gives the impression of. I’ve spent a lot of time reading the source code of popular frameworks like Express, Koa and Vue. I have a significantly deeper understanding of the programming language JavaScript than I have any other. I’m by no means an expert, yet, but I’m starting to get comfortable with most features of the language. Chat App is an all JavaScript application, using Node.js on the server-side. I really enjoy using the same language on both ends of the connection, It’s just less mental overhead.               
+            </p>
+        </div>
+        <div class="Project__column">
+            <a href="/livedemo/chatapp"><img src="../images/chatapp_chat.PNG" alt="Chatapp dashboard image"></a>
+          </div>
+      </div>
+      
+      <div >
+      </div>
+    </div>
+
+
+    <div class="Features">
+      <h2 class="Section__title">Features</h2>
+      <p class="Features__paragraph">
+
+        This is basically next level discord, messenger, skype, etc. in one package! Well not really, but you can chat with users and groups of users in real-time.
+
+      </p>
+
+      <div class="Features__container">
+          <div class="Features__element">
+              <h3 class="">1. Pick an avatar and register</h3>
+              <img src="/images/chatapp_register.PNG">
+              <p class="">
+                When registering you get to pick your avatar. The avatar is displayed next to your username when you are online. This lets you add a personal touch to how you are perceived.
+              </p>
+          </div>
+          <div class="Features__element">
+              <h3 class="">2. Chat in rooms</h3>
+              <img src="/images/chatapp_login.PNG">
+              <p class="">
+                You can create, delete, join and leave rooms. When in a room, multiple users can chat simultaneously in real-time. Oh, and the login page is above.
+              </p>
+          </div>
+          <div class="Features__element">
+              <h3 class="">3. Chat with users</h3>
+              <img src="/images/chatapp_chat.PNG">
+              <p class="">
+                You can have one-to-one private conversations with other users. All messages are persisted to a database, so no word is ever lost.
+              </p>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="Technologies">
+      <h2 class="Section__title">Technologies involved</h2>
+      Chat App is all JavaScript, using Node.js, Express and MongoDB on the server, Vue on the client  and Socket.io for WebSocket communication. I use PM2 (a node process manager) to run the application as a background process, and ensure that if the app were to crash it will restart automatically. PM2 also provides many other features, like monitoring, log management, clustering and much more. </br></br>
+      The development environment I used involved: nodemon, webpack, webpack-dev-server, babel, git and prototyping using codepen.io. </br></br>
+      The serer side framework Express was used to serving static assets, parse cookies, headers and the body. It was also used for routing and middleware. Express is an excellent framework, though I personally will use Koa exclusively going forward. With its use of async-await, it provides a better development experience in my opinion. </br></br>
+      Socket.io is central to the workings of Chat App. Socket.io can namespace sockets; a way to separate concerts within an application by introducing separation between different communication channels. Further you can also join individual sockets to rooms, which enables the programmer to easily manage groups of sockets that logically are in a common communication channel. Chat App uses both conventions. All communication from clients happen over a namespaced connection, so extending the app with other features would be no problem as this could all be organized under another namespace. When a user joins or leaves a room using the GUI, the server will add or remove the corresponding socket from the Socket.io construct that maintains the members of that room. </br></br>
+      I was conflicted whether to have login and registration logic at all. Why not just provide the real-time chatting feature and screw everything else? I would avoid involving a database and not worry about facilitating persistent sessions, authentication and authorization logic. But I decided that it would be nice to persist the chat histories and rooms, so that a user could leave and then come back to continue. For this to be possible there had to be a concept of a user in the application and the database. To interact with MongoDB I used mongoose, which is a module that provides MongoDB object modeling. With a document database such as MongoDB, there are no restrictions on how a document in a collection needs to look. Enforcing this to some decree in the code that uses the database is advised. There is also the problem of validation, casting and business logic boilerplate. All this is addressed by mongoose’s schema-based solution to modeling the application’s data. </br></br>
+      To provide some security, and session persistence I use JSON Web Tokens (JWT). After successfully logging in, the user is given a JWT containing user information which is signed by the server. The JWT is set as a cookie on the server’s response. The token is valid for 1 hour. On every subsequent request the JWT is in the header of the clients HTTP requests. To access the Chat App, you need to present a valid token, otherwise you get rejected. Since most communication happen over WebSocket and this should also be secured. The JWT is also sent with every WebSocket packet and verified in Socket.io socket middleware. Also, the WebSocket upgrade request is checked for a valid token, and connections to the /chat namespace is rejected if none is presented. </br></br>
+      When writing the first iteration of the application, I was trying to figure out how to build massive projects with WebSocket’s and Vue. I then found a nice little Vue plugin that allowed you to declare the socket’s listeners in the component’s configuration objects and also trigger Vuex actions and mutations based on WebSocket events/messages. But back then it was not satisfactory, so I extended it to support multiple namespaces and communication that was to be considered global and should trigger updates in multiple components and Vuex mutations and actions. Not relevant for this project, but this code is still used. I hope this paragraph explained what the “sockets” option is in the Chat components configuration are. </br></br>
+
+    </div>
+
+
+    <div class="Learned">
+      <h2 class="Section__title">Conclusion</h2>
+      It works ok, but there are so many things I would like to improve and so many features I would like to add. Real-time apps are just cool and I would love to make more of them. One take-aways I have from this project is the immense value of good planning. When working with technologies you are not 100% comfortable with, trying to decide on what features to build, how to build them, in what order you should do things and write code all at the same time; you get overwhelmed. A better plan produces better code. I should have had a better plan on this project, but I was pressed on time, so what can I do. Maybe I’ll return to this in the future.
+    </div>
+
+    <footer class="Footer">
+      <p class="Footer__thanks">Thank you for taking a look!</p>
+
+      <nav class="Footer__navigation">
+        <ul class="Navigation__list">
+            <li class="Navigation__element"><a href="/#home">HOME</a></li>
+            <li class="Navigation__element"><a href="/#about">ABOUT</a></li>
+            <li class="Navigation__element"><a href="/#portfolio">PORTFOLIO</a></li>
+            <li class="Navigation__element"><a href="/#cv">CV</a></li>
+            <li class="Navigation__element"><a href="/#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <p class="Footer__createdby">Created by Didrik Fleischer</p>
+
+
+      <div class="Footer__links">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/didrik.fleischer"><i class="fab fa-facebook-square"></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/didrik-fleischer-a6623533/"><i class="fab fa-linkedin"></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/DidrikF"><i class="fab fa-github-square"></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/FleischerDidrik"><i class="fab fa-twitter-square"></i></a>
+      </div>
+
+    </footer>
+  </body>
+</html>
