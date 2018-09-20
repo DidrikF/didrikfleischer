@@ -212,10 +212,9 @@ a {
 
 .express_logo {
   display: inline-block;
-  font: 1em 'helvetica neue','open sans',sans-serif;
+  font: 0.9em 'helvetica neue','open sans',sans-serif;
   font-weight: 100;
   color: #444;
-  margin-left: 40px;
 }
 
 .koa_logo {
